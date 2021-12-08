@@ -1,72 +1,26 @@
 {
   "name": "trywebpack",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@babel/polyfill": "7.12.1",
-    "@testing-library/jest-dom": "5.16.1",
-    "@testing-library/react": "12.1.2",
-    "@testing-library/user-event": "13.5.0",
-    "node-sass": "7.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "2.1.2",
-    "webpack-dev-server": "4.6.0"
-  },
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
-    "build": "cross-env NODE_ENV=production webpack --mode production",
-    "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
-    "stats": "webpack --json > stats.json && webpack-bundle-analyzer stats.json"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "version": "1.0.0",
+  "description": "in this project i learn how webpack work",
+  "main": "index.js",
+  "repository": "https://github.com/AliakseiHryhoryeu/try-webpack.git",
+  "author": "AliakseiHryhoryeu <88304337+AliakseiHryhoryeu@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
-    "@babel/core": "7.16.0",
-    "@babel/plugin-proposal-class-properties": "7.16.0",
-    "@babel/preset-env": "7.16.4",
-    "@babel/preset-react": "7.16.0",
-    "@babel/preset-typescript": "7.16.0",
-    "babel-eslint": "10.1.0",
     "babel-loader": "8.2.3",
     "clean-webpack-plugin": "4.0.0",
-    "copy-webpack-plugin": "10.0.0",
-    "cross-env": "7.0.3",
     "css-loader": "6.5.1",
     "csv-loader": "3.0.3",
-    "eslint": "8.4.1",
-    "eslint-loader": "4.0.2",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
-    "less": "4.1.2",
     "less-loader": "10.2.0",
     "mini-css-extract-plugin": "2.4.5",
-    "optimize-css-assets-webpack-plugin": "6.0.1",
-    "papaparse": "5.3.1",
-    "sass-loader": "12.4.0",
+    "scss-loader": "0.0.1",
     "style-loader": "3.3.1",
-    "terser-webpack-plugin": "5.2.5",
     "webpack": "5.65.0",
-    "webpack-bundle-analyzer": "4.5.0",
     "webpack-cli": "4.9.1",
+    "webpack-dev-server": "4.6.0",
     "xml-loader": "1.2.1"
   }
 }
