@@ -27,18 +27,18 @@ const cssLoaders = extra => {
   }
 
 module.exports = {
-    mode: "development",
-    entry: "./src/index.js",
+    mode: "development", // operating mode webpack
+    entry: "./src/index.js", // entry file
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "[name].[hash].js"
+        path: path.resolve(__dirname, "dist"),  // path to final build folder
+        filename: "[name].[hash].js" // how to name files
     },
     plugins: [
-        new HTMLWebpackPlugin({ template: "./src/index.html" }),
-        new CleanWebpackPlugin()
+        new HTMLWebpackPlugin({ template: "./src/index.html" }), // create index.html and add in him links to scripts
+        new CleanWebpackPlugin() // cleaning from previous builds
     ],
     module: {
-        rules: [
+        rules: [ // types of processed files and their loaders
             {
                 test: /\.css$/,
                 use: cssLoaders()
