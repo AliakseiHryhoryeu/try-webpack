@@ -6,6 +6,11 @@
   "repository": "https://github.com/AliakseiHryhoryeu/try-webpack.git",
   "author": "AliakseiHryhoryeu <88304337+AliakseiHryhoryeu@users.noreply.github.com>",
   "license": "MIT",
+  "scripts":{
+    "dev":"webpack --mode development",
+    "build":"webpack --mode production",
+    "watch":"webpack --mode development --watch"
+  },
   "dependencies": {
     
   },
