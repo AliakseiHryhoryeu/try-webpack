@@ -35,7 +35,7 @@ module.exports = {
     filename: "[name].[hash].js" // how to name files
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.png'],
     alias:{
       '@styles':path.resolve(__dirname,"src/assets/styles"),
       '@':path.resolve(__dirname,"src")
@@ -55,13 +55,16 @@ module.exports = {
       template: "./index.html",
       favicon: "./favicon.ico"
     }),
-    new CleanWebpackPlugin() // cleaning from previous builds
+    new CleanWebpackPlugin(), // cleaning from previous builds
+    new MiniCssExtractPlugin({
+      filename:'[name].[hash].css'      
+    })
   ],
   module: {
     rules: [ // types of processed files and their loaders
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'] // 'style-loader', 'css-loader'
       },
       {
         test: /\.less$/,
