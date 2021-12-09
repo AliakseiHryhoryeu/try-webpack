@@ -2,17 +2,18 @@
   "name": "trywebpack",
   "version": "1.0.0",
   "description": "in this project i learn how webpack work",
-  "main": "index.js",
+  "private": true,
   "repository": "https://github.com/AliakseiHryhoryeu/try-webpack.git",
   "author": "AliakseiHryhoryeu <88304337+AliakseiHryhoryeu@users.noreply.github.com>",
   "license": "MIT",
-  "scripts":{
-    "dev":"webpack --mode development",
-    "build":"webpack --mode production",
-    "watch":"webpack --mode development --watch"
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    
+    "jquery": "3.6.0",
+    "normalize.css": "8.0.1"
   },
   "devDependencies": {
     "babel-loader": "8.2.3",
@@ -23,6 +24,7 @@
     "html-webpack-plugin": "5.5.0",
     "less-loader": "10.2.0",
     "mini-css-extract-plugin": "2.4.5",
+    "sass-loader": "12.4.0",
     "scss-loader": "0.0.1",
     "style-loader": "3.3.1",
     "webpack": "5.65.0",
