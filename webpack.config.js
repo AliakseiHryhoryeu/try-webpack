@@ -27,25 +27,33 @@ const cssLoaders = extra => {
 }
 
 module.exports = {
-  context: path.resolve(__dirname,"src"),
+  context: path.resolve(__dirname, "src"),
   mode: "development", // operating mode webpack
   entry: "./index.js", // entry file
   output: {
     path: path.resolve(__dirname, "dist"),  // path to final build folder
     filename: "[name].[hash].js" // how to name files
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
+    alias:{
+      '@styles':path.resolve(__dirname,"src/assets/styles"),
+      '@':path.resolve(__dirname,"src")
+    }
+  },
   plugins: [
-    new HTMLWebpackPlugin({ 
+
+    new HTMLWebpackPlugin({ // create index.html and add in him links to scripts
       template: "./index.html",
-      favicon:"favicon.ico"
-    }), // create index.html and add in him links to scripts
+      favicon: "./favicon.ico"
+    }),
     new CleanWebpackPlugin() // cleaning from previous builds
   ],
   module: {
     rules: [ // types of processed files and their loaders
       {
         test: /\.css$/,
-        use: ['style-loader','css-loader']
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.less$/,
@@ -53,11 +61,11 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/,
-        use: cssLoaders('sass-loader')
+        use: ['sass-loader']
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        use: ['file-loader']
+        type: 'asset/resource' // webpack v5+
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
