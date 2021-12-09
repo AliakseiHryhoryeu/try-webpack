@@ -6,7 +6,9 @@
   "repository": "https://github.com/AliakseiHryhoryeu/try-webpack.git",
   "author": "AliakseiHryhoryeu <88304337+AliakseiHryhoryeu@users.noreply.github.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    
+  },
   "devDependencies": {
     "babel-loader": "8.2.3",
     "clean-webpack-plugin": "4.0.0",
