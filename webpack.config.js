@@ -41,8 +41,16 @@ module.exports = {
       '@':path.resolve(__dirname,"src")
     }
   },
+  optimization:{
+    splitChunks:{
+      chunks:'all'
+    },
+    runtimeChunk:'single'
+  },
+  devServer:{
+    port:4000
+  },
   plugins: [
-
     new HTMLWebpackPlugin({ // create index.html and add in him links to scripts
       template: "./index.html",
       favicon: "./favicon.ico"
