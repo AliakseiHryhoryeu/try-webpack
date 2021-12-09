@@ -6,25 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
-
-const cssLoaders = extra => {
-  const loaders = [
-    {
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: isDev,
-        reloadAll: true
-      },
-    },
-    'css-loader'
-  ]
-
-  if (extra) {
-    loaders.push(extra)
-  }
-
-  return loaders
-}
+console.log('is dev: ', isDev)
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
@@ -36,19 +18,20 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.png'],
-    alias:{
-      '@styles':path.resolve(__dirname,"src/assets/styles"),
-      '@':path.resolve(__dirname,"src")
+    alias: {
+      '@styles': path.resolve(__dirname, "src/assets/styles"),
+      '@': path.resolve(__dirname, "src")
     }
   },
-  optimization:{
-    splitChunks:{
-      chunks:'all'
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
     },
-    runtimeChunk:'single'
+    runtimeChunk: 'single'
   },
-  devServer:{
-    port:4000
+  devServer: {
+    port: 4000,
+    hot: isDev
   },
   plugins: [
     new HTMLWebpackPlugin({ // create index.html and add in him links to scripts
@@ -57,22 +40,20 @@ module.exports = {
     }),
     new CleanWebpackPlugin(), // cleaning from previous builds
     new MiniCssExtractPlugin({
-      filename:'[name].[hash].css'      
+      filename: '[name].[hash].css'
     })
   ],
   module: {
     rules: [ // types of processed files and their loaders
+
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'] // 'style-loader', 'css-loader'
-      },
-      {
-        test: /\.less$/,
-        use: cssLoaders('less-loader')
-      },
-      {
-        test: /\.s[ac]ss$/,
-        use: ['sass-loader']
+        test: /\.(sa|sc|c)ss$/, //sass scss css
+        use: [
+          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
