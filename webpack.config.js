@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
-
+const {BundleAnalyzer} = require('webpack-bundle-analyzer')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
@@ -17,7 +17,7 @@ const optimization = () => {
     runtimeChunk: 'single'
   }
   if (isProd) { // minimize html css js
-    config.minimizer = [ 
+    config.minimizer = [
       new OptimizeCssAssetWebpackPlugin(),
       new TerserWebpackPlugin()
     ]
@@ -25,10 +25,35 @@ const optimization = () => {
   return config
 }
 
+const babelOptions = (preset) => {
+  const options = {
+    presets: ['@babel/preset-env'],
+    plugins: [
+      '@babel/plugin-proposal-class-properties'
+    ]
+  }
+
+  if (preset) {
+    options.presets.push(preset)
+  }
+  return options
+}
+const jsLoaders = (param) =>{
+  const loaders = [{
+    loader: 'babel-loader',
+    options: babelOptions('@babel/preset-react')
+  }]
+    if (isDev) {
+      loaders.push('eslint-loader')
+  }
+return loaders
+}
+
+
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development", // operating mode webpack
-  entry: "./index.js", // entry file
+  entry: ['@babel/polyfill', './index.js'], // entry file
   output: {
     path: path.resolve(__dirname, "dist"),  // path to final build folder
     filename: "[name].[hash].js" // how to name files
@@ -46,6 +71,7 @@ module.exports = {
     port: 4000,
     hot: isDev
   },
+  devtool: isProd ? false : 'source-map',
   plugins: [
     new HTMLWebpackPlugin({ // create index.html and add in him links to scripts
       template: "./index.html",
@@ -62,17 +88,37 @@ module.exports = {
   module: {
     rules: [ // types of processed files and their loaders
 
+
       {
-        test: /\.(le|sa|sc|c)ss$/, //sass scss css
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: babelOptions()
+        }
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: babelOptions('@babel/preset-typescript')
+        },
+      },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: jsLoaders(),
+      },
+      {
+        test: /\.(sa|sc|c)ss$/, //sass scss css
         use: [
-          isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
-          "less-loader",
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
         ],
       },
-
       {
         test: /\.(png|jpg|svg|gif|webp)$/,
         type: 'asset/resource' // webpack v5+
@@ -89,8 +135,6 @@ module.exports = {
         test: /\.csv$/,
         use: ['csv-loader']
       }
-
-
     ]
   }
 }
