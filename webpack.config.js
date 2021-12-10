@@ -37,6 +37,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.png'],
     alias: {
       '@styles': path.resolve(__dirname, "src/assets/styles"),
+      '@img': path.resolve(__dirname, "src/assets/img"),
       '@': path.resolve(__dirname, "src")
     }
   },
@@ -62,16 +63,18 @@ module.exports = {
     rules: [ // types of processed files and their loaders
 
       {
-        test: /\.(sa|sc|c)ss$/, //sass scss css
+        test: /\.(le|sa|sc|c)ss$/, //sass scss css
         use: [
           isDev ? "style-loader" : MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
           "sass-loader",
+          "less-loader",
         ],
       },
+
       {
-        test: /\.(png|jpg|svg|gif)$/,
+        test: /\.(png|jpg|svg|gif|webp)$/,
         type: 'asset/resource' // webpack v5+
       },
       {
