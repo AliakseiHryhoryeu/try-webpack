@@ -2,11 +2,28 @@ const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
+
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
-console.log('is dev: ', isDev)
+const optimization = () => {
+  const config = {
+    splitChunks: {
+      chunks: 'all'
+    },
+    runtimeChunk: 'single'
+  }
+  if (isProd) { // minimize html css js
+    config.minimizer = [ 
+      new OptimizeCssAssetWebpackPlugin(),
+      new TerserWebpackPlugin()
+    ]
+  }
+  return config
+}
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
@@ -23,12 +40,7 @@ module.exports = {
       '@': path.resolve(__dirname, "src")
     }
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    },
-    runtimeChunk: 'single'
-  },
+  optimization: optimization(),
   devServer: {
     port: 4000,
     hot: isDev
@@ -36,7 +48,10 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({ // create index.html and add in him links to scripts
       template: "./index.html",
-      favicon: "./favicon.ico"
+      favicon: "./favicon.ico",
+      minify: {
+        collapseWhitespace: isProd
+      }
     }),
     new CleanWebpackPlugin(), // cleaning from previous builds
     new MiniCssExtractPlugin({
