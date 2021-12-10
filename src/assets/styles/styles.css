@@ -1,25 +1,9 @@
-@import '~normalize.css'; /* normalize plugin - yarn add normalize.css */
-@import "roboto.css";
-@import "scss.scss";
+@import '~normalize.css';   /* normalize plugin - yarn add normalize.css */
+@import "roboto.css";       /* font roboto style */
+@import "./less.less";      /* header */
+@import "scss.scss";        /* all styles */
 
 body{
     font-family: 'Roboto',sans-serif;
 }
 
-.root {
-    padding-top: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-h1 {
-    text-align: center;
-}
-
-.logo {
-    background-image: url("../img/webpack-logo.png");
-    background-size: cover;
-    height: 200px;
-    width: 200px;
-    margin: 0 auto;
-}
