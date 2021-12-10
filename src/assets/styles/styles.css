@@ -1,6 +1,5 @@
 @import '~normalize.css';   /* normalize plugin - yarn add normalize.css */
 @import "roboto.css";       /* font roboto style */
-@import "./less.less";      /* header */
 @import "scss.scss";        /* all styles */
 
 body{

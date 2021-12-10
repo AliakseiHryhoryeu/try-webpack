@@ -1,3 +1,12 @@
+
+.header{
+    background-color: #E5F3F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+
+}
 h1 {
     text-align: center;
 }
@@ -32,5 +41,34 @@ h1 {
             height: 200px;
             width: 200px;
         }
+    }
+}
+
+.posts {
+    padding: 20px 0px;
+    background-color: #e1f6f1;
+    &__title{
+        text-align: center;
+        font-size: 25px;
+        font-weight: 600;
+        padding-bottom: 20px;
+    }
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #e1f6f1;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
     }
 }
