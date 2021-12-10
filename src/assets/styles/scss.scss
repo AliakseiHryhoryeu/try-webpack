@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+}
+
+.img{
+    padding: 20px 0px;
+    background-color: #F7FBFA;
+&__container{
+
+}
+&__item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+flex-direction: column;
+    img{
+        border: 1px solid #282828;
+        height: 200px;
+        width: 200px;
+    }
+}
+}
