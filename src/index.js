@@ -23,6 +23,6 @@ for (let i in data.items) {
 console.log('header:', header)
 console.log('list:', list)
 
-document.getElementById('pre').innerHTML += header;
-document.getElementById('pre').innerHTML += '<ul>' + list + '</ul>';
+document.getElementById('Posts__container').innerHTML += header;
+document.getElementById('Posts__container').innerHTML += '<ul>' + list + '</ul>';
 
