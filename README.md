@@ -1,8 +1,17 @@
-# try-webpack
-### in this repository i learn how webpack work
-https://try-webpack.vercel.app/
+# Webpack
+### In this repository, I figured out how to work with webpack
+### I understood how to work with the following types of files using Webpack
++ ttf woff woff2 eot
++ png jpg svg gif webp
++ json xml csv
++ js jsx ts (babel compiler)
++ sass scss css
+### I also understood
++ How better make build in mode development and in mode production
++ Learned how point the way in webpack
++ How work with webpack-dev-server
++ Collect statistics and optimize builds using webpack-bundle-analyzer
++ How work witch eslint
++ Optimize html css js for production builds
 
-> yarn add -D webpack webpack-cli webpack-bundle-analyzer webpack-dev-server xml-loader terser-webpack-plugin style-loader sass-loader papaparse optimize-css-assets-webpack-plugin mini-css-extract-plugin less-loader less html-webpack-plugin file-loader  eslint-loader  eslint csv-loader css-loader cross-env copy-webpack-plugin clean-webpack-plugin babel-loader babel-eslint @babel/preset-typescript @babel/preset-react @babel/preset-env @babel/plugin-proposal-class-properties @babel/core
-
-
-> yarn add web-vitals node-sass @babel/polyfill @testing-library/user-event @testing-library/react @testing-library/jest-dom
+![Webpack-page-preview](/preview.png)
