@@ -1,12 +1,12 @@
-const path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
-const TerserWebpackPlugin = require('terser-webpack-plugin')
-const {BundleAnalyzer} = require('webpack-bundle-analyzer')
+const path = require('path')                                                          // Absolute path to the folder
+const HTMLWebpackPlugin = require('html-webpack-plugin')                              // Create index.html and add in him links to scripts 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')                        // Delete previous builds
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')                       // Optimize css
+const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')   // Optimize html css js
+const TerserWebpackPlugin = require('terser-webpack-plugin')                          // Optimize html css js
+const {BundleAnalyzer} = require('webpack-bundle-analyzer')                           // Card with occupied space by packages
 
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === 'development'              // mode in which to collect build
 const isProd = !isDev
 
 const optimization = () => {
@@ -32,16 +32,16 @@ const babelOptions = (preset) => {
       '@babel/plugin-proposal-class-properties'
     ]
   }
-
   if (preset) {
     options.presets.push(preset)
   }
   return options
 }
-const jsLoaders = (param) =>{
+
+const jsxLoader = (param) =>{
   const loaders = [{
     loader: 'babel-loader',
-    options: babelOptions('@babel/preset-react')
+    options: babelOptions(param)
   }]
     if (isDev) {
       loaders.push('eslint-loader')
@@ -59,7 +59,7 @@ module.exports = {
     filename: "[name].[hash].js" // how to name files
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.png'],
+    extensions: ['.js', '.jsx', '.png'], // default types which Webpack looks for first if no extension is specified
     alias: {
       '@styles': path.resolve(__dirname, "src/assets/styles"),
       '@img': path.resolve(__dirname, "src/assets/img"),
@@ -87,10 +87,8 @@ module.exports = {
   ],
   module: {
     rules: [ // types of processed files and their loaders
-
-
       {
-        test: /\.m?js$/,
+        test: /\.m?js$/, // JavaScript
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -98,17 +96,17 @@ module.exports = {
         }
       },
       {
-        test: /\.ts$/,
+        test: /\.jsx$/, // ReactJS
+        exclude: /node_modules/,
+        use: jsxLoader('@babel/preset-react'),
+      },
+      {
+        test: /\.ts$/, // TypeScript
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: babelOptions('@babel/preset-typescript')
         },
-      },
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        use: jsLoaders(),
       },
       {
         test: /\.(sa|sc|c)ss$/, //sass scss css
@@ -120,7 +118,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|svg|gif|webp)$/,
+        test: /\.(png|jpg|svg|gif|webp)$/, // Images
         type: 'asset/resource' // webpack v5+
       },
       {
