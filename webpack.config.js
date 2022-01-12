@@ -62,13 +62,15 @@ module.exports = {
     extensions: ['.js', '.jsx', '.png'], // default types which Webpack looks for first if no extension is specified
     alias: {
       '@styles': path.resolve(__dirname, "src/assets/styles"),
+      '@assets': path.resolve(__dirname, "src/assets"),
       '@img': path.resolve(__dirname, "src/assets/img"),
       '@': path.resolve(__dirname, "src")
     }
   },
   optimization: optimization(),
   devServer: {
-    port: 4000,
+    port: 4100,
+    historyApiFallback: true,
     hot: isDev
   },
   devtool: isProd ? false : 'source-map',

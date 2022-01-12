@@ -3,16 +3,16 @@ import * as $ from 'jquery'
 //import '@styles/styles.css'
 import './assets/styles/styles.css'
 
-import json from './assets/json.json'
-import xml from './assets/data.xml'
-import csv from './assets/data.csv'
+import json from '@assets/json.json'
+import xml from '@assets/data.xml'
+import csv from '@assets/data.csv'
 
 console.log('JSON:', json)
 console.log('XML:', xml)
 console.log('CSV:', csv)
 
-let data = JSON.parse(JSON.stringify(json));
-console.log('data:', data)
+let companies = JSON.parse(json);
+console.log(JSON.parse(json))
 
 let header = '<h2>Name ' + data.name + '</h2>';
 let list = '';
